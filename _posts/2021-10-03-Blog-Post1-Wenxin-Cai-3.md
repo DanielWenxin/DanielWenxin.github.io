@@ -476,6 +476,8 @@ fig.show()
 
 write_html(fig, "temperature_coefficient.html")
 
+{% include temperature_coefficient.html %}
+
 # Plug in all these parameters into the function px.scatter_mapbox and get the graph.
 ```
 
@@ -693,6 +695,8 @@ fig.show()
 
 write_html(fig, "ThreeDScatterplot.html")   
 
+{% include ThreeDScatterplot.html %}
+
 # Plug in all these parameters into the function px.scatter_3d.
 ```
 
@@ -798,6 +802,8 @@ fig = density_heatmap('China','Japan','India',2000,2010,2)
 fig.show()
 
 write_html(fig, "density_heatmap.html")
+
+{% include density_heatmap.html %}
 # Plug in all these parameters into the function px.density_heatmap.
 ```
 
