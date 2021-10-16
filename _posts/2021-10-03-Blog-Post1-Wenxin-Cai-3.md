@@ -472,7 +472,6 @@ fig = temperature_coefficient_plot("India", 1980, 2020, 1,
                             mapbox_style="carto-positron", 
                             color_continuous_scale=color_map)
 
-fig.show()
 
 write_html(fig, "temperature_coefficient.html")
 
@@ -691,7 +690,6 @@ def ThreeDScatterplot(country1,country2,country3,year_begin,year_end,month,**kwa
 ```python
 fig = ThreeDScatterplot("China","Japan","India",1980,2000,2)
 
-fig.show()
 
 write_html(fig, "ThreeDScatterplot.html")   
 
@@ -799,7 +797,6 @@ def density_heatmap(country1,country2,country3,year_begin,year_end,month, **kwar
 ```python
 fig = density_heatmap('China','Japan','India',2000,2010,2)
 
-fig.show()
 
 write_html(fig, "density_heatmap.html")
 
