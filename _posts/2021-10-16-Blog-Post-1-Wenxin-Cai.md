@@ -482,11 +482,10 @@ fig = temperature_coefficient_plot("India", 1980, 2020, 1,
                             mapbox_style="carto-positron", 
                             color_continuous_scale=color_map)
 
-
+# Plug in all these parameters into the function px.scatter_mapbox and get the graph.
 write_html(fig, "temperature_coefficient.html")
 ```
 {% include temperature_coefficient.html %}
-# Plug in all these parameters into the function px.scatter_mapbox and get the graph.
 
 
 
@@ -597,13 +596,12 @@ def ThreeDScatterplot(country1,country2,country3,year_begin,year_end,month,**kwa
 
 ```python
 fig = ThreeDScatterplot("China","Japan","India",1980,2000,2)
-
+# Plug in all these parameters into the function px.scatter_3d.
 
 write_html(fig, "ThreeDScatterplot.html")   
 ```
 {% include ThreeDScatterplot.html %}
 
-# Plug in all these parameters into the function px.scatter_3d.
 
 
 ## Second Plot
@@ -676,9 +674,8 @@ def density_heatmap(country1,country2,country3,year_begin,year_end,month, **kwar
 
 ```python
 fig = density_heatmap('China','Japan','India',2000,2010,2)
-
+# Plug in all these parameters into the function px.density_heatmap.
 
 write_html(fig, "density_heatmap.html")
 ```
 {% include density_heatmap.html %}
-# Plug in all these parameters into the function px.density_heatmap.
