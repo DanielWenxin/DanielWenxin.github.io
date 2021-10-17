@@ -666,7 +666,7 @@ def density_heatmap(country1,country2,country3,year_begin,year_end,month, **kwar
                             **kwargs)
     # Plug in all these parameters into the function px.density_heatmap.
     
-    fig.update_layout(margin={"r":20,"t":50,"l":20,"b":20})  # Set the layout of the plot.
+    fig.update_layout(margin={"r":60,"t":50,"l":60,"b":20})  # Set the layout of the plot.
     return(fig)    # Show the graph.
 
 ```
