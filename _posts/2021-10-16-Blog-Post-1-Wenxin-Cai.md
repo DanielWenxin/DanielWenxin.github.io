@@ -484,10 +484,10 @@ fig = temperature_coefficient_plot("India", 1980, 2020, 1,
 
 
 write_html(fig, "temperature_coefficient.html")
-
+```
 {% include temperature_coefficient.html %}
 # Plug in all these parameters into the function px.scatter_mapbox and get the graph.
-```
+
 
 
 # §4. Create Two More Interesting Figures
@@ -600,11 +600,10 @@ fig = ThreeDScatterplot("China","Japan","India",1980,2000,2)
 
 
 write_html(fig, "ThreeDScatterplot.html")   
-
+```
 {% include ThreeDScatterplot.html %}
 
 # Plug in all these parameters into the function px.scatter_3d.
-```
 
 
 ## Second Plot
@@ -680,7 +679,6 @@ fig = density_heatmap('China','Japan','India',2000,2010,2)
 
 
 write_html(fig, "density_heatmap.html")
-
+```
 {% include density_heatmap.html %}
 # Plug in all these parameters into the function px.density_heatmap.
-```
