@@ -1,3 +1,8 @@
+---
+layout: post
+title: The Blog Post 1 For Wenxin
+---
+
 # §1. Create a Database
 
 First, create a database with three tables: temperatures, stations, and countries. Information on how to access country names and relate them to temperature readings is in this lecture. Rather than merging, as we did in the linked lecture, you should keep these as three separate tables in your database.
