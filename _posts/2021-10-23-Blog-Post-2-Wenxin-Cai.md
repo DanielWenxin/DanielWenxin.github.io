@@ -9,10 +9,10 @@ What movie or TV shows share actors with your favorite movie or show?
 
 ### Part I Describing the scraper
 
-Here’s a link to my project repository:
+Here’s a link to my project repository
 https://github.com/DanielWenxin/DanielWenxin.github.io/blob/master/IMDB_scraper/IMDB_scraper/spiders/imdb_spider.py
 
-Here’s how we set up the project:
+Here’s how we set up the project
 
 
 ```python
@@ -369,9 +369,10 @@ fig = px.histogram(DF1,
 
 fig.update_layout(margin={"r":30,"t":170,"l":0,"b":0})
 
-write_html(fig, "shared actors.html")
+write_html(fig, "shared_actors.html")
 
 # Plot a histogram where the x-axis represents the name of each movie and the y-axis represents the number 
 # of shared actors 
 # save the figure as html
 ```
+{% include shared_actors.html %}
