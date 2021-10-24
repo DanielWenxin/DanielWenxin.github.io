@@ -5,7 +5,7 @@ title: The Blog Post 2 For Wenxin
 
 
 ## In this blog post, I’m going to make a super cool web scraper to answer the following question:
-*What movie or TV shows share actors with your favorite movie or show?*
+What movie or TV shows share actors with your favorite movie or show?
 
 ### Part I: Describing the scraper
 
@@ -17,7 +17,8 @@ https://github.com/DanielWenxin/DanielWenxin.github.io/blob/master/IMDB_scraper/
 ```
 Here’s how we set up the project:
 
-#### 1. <implementation of parse()>
+```
+1. <implementation of parse()>
 
 	def parse(self, response):
 
@@ -28,13 +29,13 @@ Here’s how we set up the project:
 		yield scrapy.Request(CrewAndCast, callback = self.parse_full_credits)
 
 
-		*This method works by first defining "Tile" as a string "fullcredits", and then we concatenate the response.url with "fullcredits".*
+		This method works by first defining "Tile" as a string "fullcredits", and then we concatenate the response.url with "fullcredits".
 
-		*So that we can then navigate to the Cast & Crew page.*
+		So that we can then navigate to the Cast & Crew page.
 
-		*Once there, the parse_full_credits(self,response) should be called, by specifying this method in the callback argument to a yielded scrapy.*
+		Once there, the parse_full_credits(self,response) should be called, by specifying this method in the callback argument to a yielded scrapy.
 
-#### 2. <implementation of parse_full_credits()>
+2. <implementation of parse_full_credits()>
 
 	def parse_full_credits(self, response):
 
@@ -46,13 +47,13 @@ Here’s how we set up the project:
 			yield scrapy.Request(actor_link, callback = self.parse_actor_page)
 
 
-			*We first create a list comprehension which creates a list of relative paths, one for each actor*
+			We first create a list comprehension which creates a list of relative paths, one for each actor
 
-			*Looping over the path for each actor and name it as actor_link. Then, if the actor_link does exist, we concatenate the Cast & Crew page url with actor_link*
+			Looping over the path for each actor and name it as actor_link. Then, if the actor_link does exist, we concatenate the Cast & Crew page url with actor_link
 
-			*The yielded request should specify the method parse_actor_page(self, response) should be called when the actor’s page is reached*
+			The yielded request should specify the method parse_actor_page(self, response) should be called when the actor’s page is reached
 
-#### 3. <implementation of parse_actor_page()>
+3. <implementation of parse_actor_page()>
 
 	def parse_actor_page(self, response):
 
@@ -66,13 +67,12 @@ Here’s how we set up the project:
 					"movie_or_TV_name" : movie_or_TV_name
 					}
 
-			*We first obatin the actor_name by applying css method searching on span.itemprop::text detected by developer tool*
+			We first obatin the actor_name by applying css method searching on span.itemprop::text detected by developer tool
 
-			*Then obatin the movie_or_TV_name by looping over and applying css method searching on div.filmo-row detected by developer tool*
+			Then obatin the movie_or_TV_name by looping over and applying css method searching on div.filmo-row detected by developer tool
 
-			*yield a dictionary with two key-value pairs, of the form {"actor" : actor_name, "movie_or_TV_name" : movie_or_TV_name}*
-
-
+			yield a dictionary with two key-value pairs, of the form {"actor" : actor_name, "movie_or_TV_name" : movie_or_TV_name}
+```
 
 ### Part II: Table or Visualization
 
