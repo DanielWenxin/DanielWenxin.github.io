@@ -11,11 +11,13 @@ title: The Blog Post 2 For Wenxin
 
 
 Here’s a link to my project repository:
-https://github.com/DanielWenxin/DanielWenxin.github.io/blob/master/IMDB_scraper/IMDB_scraper/spiders/imdb_spider.py
 
+```
+https://github.com/DanielWenxin/DanielWenxin.github.io/blob/master/IMDB_scraper/IMDB_scraper/spiders/imdb_spider.py
+```
 Here’s how we set up the project:
 
-1. <implementation of parse()>
+#### 1. <implementation of parse()>
 
 	def parse(self, response):
 
@@ -32,7 +34,7 @@ Here’s how we set up the project:
 
 		*Once there, the parse_full_credits(self,response) should be called, by specifying this method in the callback argument to a yielded scrapy.*
 
-2. <implementation of parse_full_credits()>
+#### 2. <implementation of parse_full_credits()>
 
 	def parse_full_credits(self, response):
 
@@ -50,7 +52,7 @@ Here’s how we set up the project:
 
 			*The yielded request should specify the method parse_actor_page(self, response) should be called when the actor’s page is reached*
 
-3. <implementation of parse_actor_page()>
+#### 3. <implementation of parse_actor_page()>
 
 	def parse_actor_page(self, response):
 
