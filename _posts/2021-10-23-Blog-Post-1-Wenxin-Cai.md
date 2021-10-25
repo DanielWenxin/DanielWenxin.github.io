@@ -121,6 +121,13 @@ def parse_actor_page(self, response):
 # of the form {"actor" : actor_name, "movie_or_TV_name" : movie_or_TV_name}
 ```
 
+Once the spider is fully written, comment out the line the line “CLOSESPIDER_PAGECOUNT = 20” in the settings.py file and run the command below to create a .csv file with a column for actors and a column for movies or TV shows.
+
+
+```python
+scrapy crawl imdb_spider -o results.csv
+```
+
 ### Part II Table or Visualization
 
 ## Read the CSV file called results.csv
@@ -375,4 +382,5 @@ write_html(fig, "shared_actors.html")
 # of shared actors 
 # save the figure as html
 ```
+
 {% include shared_actors.html %}
