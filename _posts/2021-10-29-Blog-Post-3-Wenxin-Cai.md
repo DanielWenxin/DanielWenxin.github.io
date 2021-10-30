@@ -163,8 +163,6 @@ Don’t forget to close the database connection within the function!
 
 ## A discussion of at least one of the template files you used in your app. You can copy the source code of the template file into your markdown post.
 
-
-```python
 {% extends 'base.html' %}        # We had the submit.html template extend base.html
 
 {% block header %}
@@ -207,16 +205,13 @@ Don’t forget to close the database connection within the function!
 
 {% endblock %}
 
-```
 
 ## Your blog post must include two screencaps:
 
   - In the first screencap, you should show an example of a user submitting a message. In the handle field, please use either your name or the nickname used on your PIC16B blog. I’ve demonstrated this in my screencap illustrating the submission interface in Section §1.
-{% include interface1.png %}
-
+![interface1.png](/images/interface1.png)
   - In the second screencap, you should show an example of a user viewing submitted messages. Show at least two messages, one of which is the message you submitted in the previous screencap. This message should show your name or nickname. I’ve demonstrated this in my screencap illustrating the viewing interface in Section §2.
-{% include interface2.png %}
-
+![interface2.png](/images/interface2.png)
 ## Additionally, please include in your blog post a link to the GitHub repository containing the code for your app.
 
 https://github.com/DanielWenxin/BLOG3/tree/main/flask-interactions-main2
