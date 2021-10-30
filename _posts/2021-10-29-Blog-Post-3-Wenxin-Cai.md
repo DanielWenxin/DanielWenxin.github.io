@@ -165,44 +165,48 @@ Don’t forget to close the database connection within the function!
 
 ```
 {% raw %}
-{% extends 'base.html' %}        # We had the submit.html template extend base.html
+{% extends 'base.html' %}        
+# We had the submit.html template extend base.html
 
 {% block header %}
-  <h1>{% block title %}Submit{% endblock %}</h1>     # Set up the title as "Submit"
+  <h1>{% block title %}Submit{% endblock %}</h1>     
+# Set up the title as "Submit"
 {% endblock %}
 
-{% block content %}             # Here is the html that creates the interactable elements
+{% block content %}             
+# Here is the html that creates the interactable elements
   <form method="post" enctype="multipart/form-data">
-    <label for="message">Your message</label>     # Here is the block asking for the user to fill in their message
+    <label for="message">Your message</label>     
+# Here is the block asking for the user to fill in their message
     <br>
     <input type="text" name="message" id="message"> 
-    # It shows that the type of the input is "text", and we set their name and id as "message"
+# It shows that the type of the input is "text", and we set their name and id as "message"
     <br>
     <label for="name">Your name or handle: </label> 
-    # Here is the block asking for the user to fill in their users' name
+# Here is the block asking for the user to fill in their users' name
     <br>
     <input type="text" name="handle" id="handle">
-    # It shows that the type of the input is "text", and we set their name and id as "handle"
+# It shows that the type of the input is "text", and we set their name and id as "handle"
     <br>
     <input type="submit" value="Submit">
-    # Here is the submit button created in out html
+# Here is the submit button created in out html
     <br>
   </form>
 
   {% if thanks %}
-    # Recall the command--thanks=True--written in app.py
-    # so if "thanks" shown up
+# Recall the command--thanks=True--written in app.py
+# so if "thanks" shown up
     <br>
     Thank You For Submitting!
-    # We'll print the greeting "Thank You For Submitting!" on our website
+# We'll print the greeting "Thank You For Submitting!" on our website
   {% endif %}
 
   {% if error %}
-    # Recall the command--error=True--written in app.py
-    # so if "error" shown up
+# Recall the command--error=True--written in app.py
+# so if "error" shown up
     <br>
     Oh, we cannot read!
-    # We'll print the error message "Oh, we cannot read!" on our website
+# We'll print the error message "Oh, we cannot read!" on our website
   {% endif %}
 
 {% endblock %}
