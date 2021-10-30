@@ -163,6 +163,8 @@ Don’t forget to close the database connection within the function!
 
 ## A discussion of at least one of the template files you used in your app. You can copy the source code of the template file into your markdown post.
 
+```
+{% raw %}
 {% extends 'base.html' %}        # We had the submit.html template extend base.html
 
 {% block header %}
@@ -204,7 +206,8 @@ Don’t forget to close the database connection within the function!
   {% endif %}
 
 {% endblock %}
-
+{% endraw %}
+```
 
 ## Your blog post must include two screencaps:
 
