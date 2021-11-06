@@ -13,9 +13,9 @@ For Blog Post 4, we are aim to write a tutorial about *spectral clustering* algo
 
 In all the math below: 
 
-- Boldface capital letters like $\mathbf{A}$ refer to matrices (2d arrays of numbers). 
-- Boldface lowercase letters like $\mathbf{v}$ refer to vectors (1d arrays of numbers). 
-- $\mathbf{A}\mathbf{B}$ refers to a matrix-matrix product (`A@B`). $\mathbf{A}\mathbf{v}$ refers to a matrix-vector product (`A@v`). 
+- Boldface capital letters like $$\mathbf{A}$$ refer to matrices (2d arrays of numbers). 
+- Boldface lowercase letters like $$\mathbf{v}$$ refer to vectors (1d arrays of numbers). 
+- $$\mathbf{A}\mathbf{B}$$ refers to a matrix-matrix product (`A@B`). $$\mathbf{A}\mathbf{v}$$ refers to a matrix-vector product (`A@v`). 
 
 ### Comments and Docstrings
 
@@ -154,8 +154,8 @@ Now we have already derived the similarity matrix 𝐀 where each entry showing 
 
 ### Definition:
 
-1. *degree* of $i$ : $d_i = \sum_{j = 1}^n a_{ij}$ 
-(the $i$th row-sum of $\mathbf{A}$)
+1. *degree* of $$i$$ : $$d_i = \sum_{j = 1}^n a_{ij}$$
+(the $$i$$th row-sum of $$\mathbf{A}$$)
 
 2. label matrix y : The clustering information are contained in matrix `y`. Specifically, if `y[i] = 1`, then we can conclude that the point i is clustered in C1; if `y[i] = 0`, it is clustered in C0.
 
@@ -164,14 +164,14 @@ Now we have already derived the similarity matrix 𝐀 where each entry showing 
 $$N_{\mathbf{A}}(C_0, C_1)\equiv \mathbf{cut}(C_0, C_1)\left(\frac{1}{\mathbf{vol}(C_0)} + \frac{1}{\mathbf{vol}(C_1)}\right)\;.$$
 In this formula, we have
 
-- $\mathbf{cut}(C_0, C_1) \equiv \sum_{i \in C_0, j \in C_1} a_{ij}$ is the *cut* of the clusters $C_0$ and $C_1$. 
-- $\mathbf{vol}(C_0) \equiv \sum_{i \in C_0}d_i$, where $d_i = \sum_{j = 1}^n a_{ij}$ is the *degree* of row $i$ as we defined above, showing the total number of all other points closed. Therefore, The *volume* of cluster $C_0$ is a measure of the size of the cluster. 
+- $$\mathbf{cut}(C_0, C_1) \equiv \sum_{i \in C_0, j \in C_1} a_{ij}$$ is the *cut* of the clusters $$C_0$$ and $$C_1$$. 
+- $$\mathbf{vol}(C_0) \equiv \sum_{i \in C_0}d_i$$, where $$d_i = \sum_{j = 1}^n a_{ij}$$ is the *degree* of row $$i$$ as we defined above, showing the total number of all other points closed. Therefore, The *volume* of cluster $$C_0$$ is a measure of the size of the cluster. 
 
 #### What's Cut Term ? 
 
 In this section, we are gonna write a function called cut(A,y) to return the cut term. 
 
-Specifically, the cut term $\mathbf{cut}(C_0, C_1)$ represents the level of connections between points from cluster C0 and C1. Therefore, to calculate the cut term, we can simply search out all these pairs of points in different clusters and sum up the corresponding entries in `A[i,j]`.
+Specifically, the cut term $$\mathbf{cut}(C_0, C_1)$$ represents the level of connections between points from cluster C0 and C1. Therefore, to calculate the cut term, we can simply search out all these pairs of points in different clusters and sum up the corresponding entries in `A[i,j]`.
 
 
 ```python
@@ -209,7 +209,7 @@ print(cut(A,RandomNum))
 
 #### What's the Volume Term ?
 
-The volumn term of the clusters basically represents how bug the cluster is. In other words, if the cluster C1 is small, then the value of $\mathbf{vol}(C_0)$ would be small, indicating that $\frac{1}{\mathbf{vol}(C_0)}$ will be large.
+The volumn term of the clusters basically represents how bug the cluster is. In other words, if the cluster C1 is small, then the value of $$\mathbf{vol}(C_0)$$ would be small, indicating that $$\frac{1}{\mathbf{vol}(C_0)}$$ will be large.
 
 So here we can write the function `vols(A,y)` which returns a tuple where the first entry shows the volume of cluster 0 and the second entry shows the volume of cluster 1. 
 
@@ -266,7 +266,7 @@ z_i =
 \end{cases}
 $$
 
-Note that the signs of  the elements of $\mathbf{z}$ contain all the information from $\mathbf{y}$: if $i$ is in cluster $C_0$, then $y_i = 0$ and $z_i > 0$. 
+Note that the signs of  the elements of $$\mathbf{z}$$ contain all the information from $$\mathbf{y}$$: if $$i$$ is in cluster $$C_0$$, then $$y_i = 0$$ and $$z_i > 0$$. 
 
 
 #### So first, let's write the function `transform(A,y)` to compute the new label vector by defnition above. 
@@ -284,7 +284,7 @@ def transform(A,y):
 Then, we are given that 
 $$\mathbf{N}_{\mathbf{A}}(C_0, C_1) = \frac{\mathbf{z}^T (\mathbf{D} - \mathbf{A})\mathbf{z}}{\mathbf{z}^T\mathbf{D}\mathbf{z}}\;$$
 
-where $\mathbf{D}$ is the diagonal matrix with nonzero entries $d_{ii} = d_i$, and  where $d_i = \sum_{j = 1}^n a_i$ is the degree (row-sum) from before.  
+where $$\mathbf{D}$$ is the diagonal matrix with nonzero entries $$d_{ii} = d_i$$, and  where $$d_i = \sum_{j = 1}^n a_i$$ is the degree (row-sum) from before.  
 
 
 
@@ -309,7 +309,7 @@ np.isclose(LeftSide,RightSide)     # Compare the leftside and the rightside
 
 
 
-#### Then we can check whether $\mathbf{z}^T\mathbf{D}\mathbb{1} = 0$, where $\mathbb{1}$ is the vector of `n` ones (i.e. `np.ones(n)`). 
+#### Then we can check whether $$\mathbf{z}^T\mathbf{D}\mathbb{1} = 0$$, where $$\mathbb{1}$$ is the vector of `n` ones (i.e. `np.ones(n)`). 
 
 
 ```python
@@ -331,9 +331,9 @@ From last part we can notice that our goal is to make the normcut term as small 
 
 $$ R_\mathbf{A}(\mathbf{z})\equiv \frac{\mathbf{z}^T (\mathbf{D} - \mathbf{A})\mathbf{z}}{\mathbf{z}^T\mathbf{D}\mathbf{z}} $$
 
-subject to the condition $\mathbf{z}^T\mathbf{D}\mathbb{1} = 0$. 
+subject to the condition $$\mathbf{z}^T\mathbf{D}\mathbb{1} = 0$$. 
 
-Thus, we can achieve this by substituting $\mathbf{z}$ each time and to get the more appropriate one.
+Thus, we can achieve this by substituting $$\mathbf{z}$$ each time and to get the more appropriate one.
 
 We are given the function `orth_obj` and `orth`
 
@@ -392,9 +392,9 @@ which is equivalent to the standard eigenvalue problem
 
 $$ \mathbf{D}^{-1}(\mathbf{D} - \mathbf{A}) \mathbf{z} = \lambda \mathbf{z}\;, \quad \mathbf{z}^T\mathbb{1} = 0\;.$$
 
-Since $\mathbb{1}$ is the eigenvector with the smallest eigenvalue, so the `z_` we want should be the eigenvector correspond to the second-smallest eigenvalue.
+Since $$\mathbb{1}$$ is the eigenvector with the smallest eigenvalue, so the `z_` we want should be the eigenvector correspond to the second-smallest eigenvalue.
 
-So here we are gonna create the Laplacian matrix of the similarity matrix 𝐀, $\mathbf{L} = \mathbf{D}^{-1}(\mathbf{D} - \mathbf{A})$. Solving this equation and find the eigenvector correspond to the second-smallest eigenvalue.
+So here we are gonna create the Laplacian matrix of the similarity matrix 𝐀, $$\mathbf{L} = \mathbf{D}^{-1}(\mathbf{D} - \mathbf{A})$$. Solving this equation and find the eigenvector correspond to the second-smallest eigenvalue.
 
 
 ```python
