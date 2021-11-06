@@ -256,7 +256,7 @@ We observed that the true value is smaller
 ## Part C
 
 In this part, we are trying to minimize our `normcut(A,y)` term by finding a new label vector `y`. Here is the math trick.
-Here's the trick: define a new vector $\mathbf{z} \in \mathbb{R}^n$ such that: 
+Here's the trick: define a new vector $$\mathbf{z} \in \mathbb{R}^n$$ such that: 
 
 $$
 z_i = 
