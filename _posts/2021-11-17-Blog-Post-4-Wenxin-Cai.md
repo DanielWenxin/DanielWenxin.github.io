@@ -154,12 +154,12 @@ Now we have already derived the similarity matrix 𝐀 where each entry showing 
 
 ### Definition:
 
-1. *degree* of $i$ : $d_i = \sum_{j = 1}^n a_{ij}$ 
-(the $i$th row-sum of $\mathbf{A}$)
+1. *degree* of $$i$$ : $$d_i = \sum_{j = 1}^n a_{ij}$$ 
+(the $$i$$th row-sum of $$\mathbf{A}$$)
 
 2. label matrix y : The clustering information are contained in matrix `y`. Specifically, if `y[i] = 1`, then we can conclude that the point i is clustered in C1; if `y[i] = 0`, it is clustered in C0.
 
-3. The *binary norm cut objective* of a matrix $\mathbf{A}$ is the function 
+3. The *binary norm cut objective* of a matrix $$\mathbf{A}$$ is the function 
 
 $$N_{\mathbf{A}}(C_0, C_1)\equiv \mathbf{cut}(C_0, C_1)\left(\frac{1}{\mathbf{vol}(C_0)} + \frac{1}{\mathbf{vol}(C_1)}\right)\;.$$
 In this formula, we have
