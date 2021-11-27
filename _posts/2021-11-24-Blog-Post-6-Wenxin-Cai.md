@@ -1037,6 +1037,7 @@ fig = px.scatter(embedding_df,
 write_html(fig, "Embed.html")
 # Ready to plot!
 ```
+![P1.png](/images/P1.png)     
 
 This embedding seems to have learned some reasonable associations.
 
