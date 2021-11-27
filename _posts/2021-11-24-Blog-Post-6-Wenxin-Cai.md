@@ -194,7 +194,7 @@ labels_iterator= train.unbatch().map(lambda image,fake: fake).as_numpy_iterator(
 True_Article = 0
 Fake_Article = 0
 for LABEL in labels_iterator:
-    if LABEL==0:
+    if LABEL["fake"]==0:
         True_Article=True_Article+1
     else:
         Fake_Article=Fake_Article+1
@@ -202,21 +202,20 @@ print(True_Article)
 print(Fake_Article)
 ```
 
-    0
-    18000
+    8603
+    9397
 
 
 
 ```python
-Fake_Article
+base_rate = 9397 / (8603+9397)
+print(base_rate)
 ```
 
+    0.5220555555555556
 
 
-
-    18000
-
-
+As we can see, the base rate is approximately 0.522
 
 ## §3. Create Models
 
@@ -327,8 +326,8 @@ keras.utils.plot_model(model1)  # Plot the model
 
 
 
-![output_27_0.png](/images/output_27_0.png)   
     
+![output_27_0.png](/images/output_27_0.png)    
 
 
 
@@ -357,65 +356,65 @@ history = model1.fit(train,
     
 
 
-    180/180 [==============================] - 4s 11ms/step - loss: 0.6914 - accuracy: 0.5172 - val_loss: 0.6889 - val_accuracy: 0.5266
+    180/180 [==============================] - 4s 11ms/step - loss: 0.6921 - accuracy: 0.5182 - val_loss: 0.6908 - val_accuracy: 0.5266
     Epoch 2/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.6811 - accuracy: 0.5807 - val_loss: 0.6665 - val_accuracy: 0.5846
+    180/180 [==============================] - 2s 10ms/step - loss: 0.6891 - accuracy: 0.5318 - val_loss: 0.6824 - val_accuracy: 0.5278
     Epoch 3/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.6337 - accuracy: 0.7715 - val_loss: 0.5846 - val_accuracy: 0.9045
+    180/180 [==============================] - 2s 10ms/step - loss: 0.6620 - accuracy: 0.6891 - val_loss: 0.6271 - val_accuracy: 0.7932
     Epoch 4/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.5184 - accuracy: 0.8897 - val_loss: 0.4418 - val_accuracy: 0.9445
+    180/180 [==============================] - 2s 10ms/step - loss: 0.5651 - accuracy: 0.8765 - val_loss: 0.4911 - val_accuracy: 0.9400
     Epoch 5/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.3861 - accuracy: 0.9272 - val_loss: 0.3191 - val_accuracy: 0.9494
+    180/180 [==============================] - 2s 10ms/step - loss: 0.4249 - accuracy: 0.9246 - val_loss: 0.3516 - val_accuracy: 0.9470
     Epoch 6/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.2913 - accuracy: 0.9397 - val_loss: 0.2399 - val_accuracy: 0.9544
+    180/180 [==============================] - 2s 10ms/step - loss: 0.3165 - accuracy: 0.9327 - val_loss: 0.2595 - val_accuracy: 0.9526
     Epoch 7/30
-    180/180 [==============================] - 2s 9ms/step - loss: 0.2319 - accuracy: 0.9456 - val_loss: 0.1904 - val_accuracy: 0.9622
+    180/180 [==============================] - 2s 10ms/step - loss: 0.2456 - accuracy: 0.9423 - val_loss: 0.2000 - val_accuracy: 0.9600
     Epoch 8/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.1935 - accuracy: 0.9507 - val_loss: 0.1555 - val_accuracy: 0.9674
+    180/180 [==============================] - 2s 10ms/step - loss: 0.2007 - accuracy: 0.9505 - val_loss: 0.1622 - val_accuracy: 0.9643
     Epoch 9/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.1627 - accuracy: 0.9570 - val_loss: 0.1307 - val_accuracy: 0.9715
+    180/180 [==============================] - 2s 10ms/step - loss: 0.1706 - accuracy: 0.9539 - val_loss: 0.1376 - val_accuracy: 0.9710
     Epoch 10/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.1431 - accuracy: 0.9616 - val_loss: 0.1129 - val_accuracy: 0.9737
+    180/180 [==============================] - 2s 10ms/step - loss: 0.1503 - accuracy: 0.9566 - val_loss: 0.1196 - val_accuracy: 0.9724
     Epoch 11/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.1265 - accuracy: 0.9643 - val_loss: 0.1003 - val_accuracy: 0.9746
+    180/180 [==============================] - 2s 10ms/step - loss: 0.1325 - accuracy: 0.9626 - val_loss: 0.1051 - val_accuracy: 0.9737
     Epoch 12/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.1179 - accuracy: 0.9652 - val_loss: 0.0912 - val_accuracy: 0.9757
+    180/180 [==============================] - 2s 10ms/step - loss: 0.1209 - accuracy: 0.9630 - val_loss: 0.0944 - val_accuracy: 0.9748
     Epoch 13/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.1066 - accuracy: 0.9685 - val_loss: 0.0875 - val_accuracy: 0.9773
+    180/180 [==============================] - 2s 10ms/step - loss: 0.1093 - accuracy: 0.9669 - val_loss: 0.0906 - val_accuracy: 0.9777
     Epoch 14/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0989 - accuracy: 0.9696 - val_loss: 0.0808 - val_accuracy: 0.9775
+    180/180 [==============================] - 2s 10ms/step - loss: 0.1029 - accuracy: 0.9694 - val_loss: 0.0807 - val_accuracy: 0.9775
     Epoch 15/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0926 - accuracy: 0.9712 - val_loss: 0.0725 - val_accuracy: 0.9795
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0971 - accuracy: 0.9696 - val_loss: 0.0757 - val_accuracy: 0.9786
     Epoch 16/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0888 - accuracy: 0.9712 - val_loss: 0.0683 - val_accuracy: 0.9807
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0897 - accuracy: 0.9722 - val_loss: 0.0722 - val_accuracy: 0.9800
     Epoch 17/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0825 - accuracy: 0.9737 - val_loss: 0.0665 - val_accuracy: 0.9807
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0851 - accuracy: 0.9717 - val_loss: 0.0691 - val_accuracy: 0.9802
     Epoch 18/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0809 - accuracy: 0.9732 - val_loss: 0.0643 - val_accuracy: 0.9807
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0828 - accuracy: 0.9723 - val_loss: 0.0663 - val_accuracy: 0.9802
     Epoch 19/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0784 - accuracy: 0.9744 - val_loss: 0.0600 - val_accuracy: 0.9809
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0773 - accuracy: 0.9751 - val_loss: 0.0622 - val_accuracy: 0.9804
     Epoch 20/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0745 - accuracy: 0.9747 - val_loss: 0.0577 - val_accuracy: 0.9807
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0762 - accuracy: 0.9738 - val_loss: 0.0612 - val_accuracy: 0.9809
     Epoch 21/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0685 - accuracy: 0.9766 - val_loss: 0.0577 - val_accuracy: 0.9813
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0730 - accuracy: 0.9753 - val_loss: 0.0578 - val_accuracy: 0.9807
     Epoch 22/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0693 - accuracy: 0.9757 - val_loss: 0.0552 - val_accuracy: 0.9813
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0721 - accuracy: 0.9748 - val_loss: 0.0564 - val_accuracy: 0.9807
     Epoch 23/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0673 - accuracy: 0.9765 - val_loss: 0.0528 - val_accuracy: 0.9829
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0699 - accuracy: 0.9748 - val_loss: 0.0543 - val_accuracy: 0.9811
     Epoch 24/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0646 - accuracy: 0.9768 - val_loss: 0.0576 - val_accuracy: 0.9809
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0681 - accuracy: 0.9764 - val_loss: 0.0533 - val_accuracy: 0.9816
     Epoch 25/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0634 - accuracy: 0.9776 - val_loss: 0.0527 - val_accuracy: 0.9816
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0642 - accuracy: 0.9773 - val_loss: 0.0540 - val_accuracy: 0.9813
     Epoch 26/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0608 - accuracy: 0.9786 - val_loss: 0.0513 - val_accuracy: 0.9818
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0645 - accuracy: 0.9771 - val_loss: 0.0517 - val_accuracy: 0.9811
     Epoch 27/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0591 - accuracy: 0.9801 - val_loss: 0.0516 - val_accuracy: 0.9818
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0626 - accuracy: 0.9768 - val_loss: 0.0532 - val_accuracy: 0.9813
     Epoch 28/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0583 - accuracy: 0.9791 - val_loss: 0.0496 - val_accuracy: 0.9825
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0603 - accuracy: 0.9782 - val_loss: 0.0497 - val_accuracy: 0.9822
     Epoch 29/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0567 - accuracy: 0.9788 - val_loss: 0.0482 - val_accuracy: 0.9829
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0594 - accuracy: 0.9787 - val_loss: 0.0518 - val_accuracy: 0.9818
     Epoch 30/30
-    180/180 [==============================] - 2s 10ms/step - loss: 0.0556 - accuracy: 0.9802 - val_loss: 0.0478 - val_accuracy: 0.9827
+    180/180 [==============================] - 2s 10ms/step - loss: 0.0578 - accuracy: 0.9795 - val_loss: 0.0484 - val_accuracy: 0.9822
 
 
 
@@ -430,12 +429,13 @@ plt.legend()
 
 
 
-    <matplotlib.legend.Legend at 0x7f630bcf9650>
+    <matplotlib.legend.Legend at 0x7f37af4ab350>
 
 
 
 
-![output_30_1.png](/images/output_30_1.png)       
+    
+![output_30_1.png](/images/output_30_1.png)
     
 
 
@@ -545,7 +545,8 @@ keras.utils.plot_model(model2)    # Plot model2
 
 
 
-![output_40_0.png](/images/output_40_0.png)        
+    
+![output_40_0.png](/images/output_40_0.png)      
     
 
 
@@ -576,65 +577,65 @@ history = model2.fit(train,
     
 
 
-    180/180 [==============================] - 4s 17ms/step - loss: 0.6708 - accuracy: 0.6588 - val_loss: 0.6150 - val_accuracy: 0.9261
+    180/180 [==============================] - 4s 18ms/step - loss: 0.6741 - accuracy: 0.6317 - val_loss: 0.6276 - val_accuracy: 0.9155
     Epoch 2/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.4990 - accuracy: 0.9042 - val_loss: 0.3762 - val_accuracy: 0.9393
+    180/180 [==============================] - 3s 17ms/step - loss: 0.5265 - accuracy: 0.8980 - val_loss: 0.4062 - val_accuracy: 0.9400
     Epoch 3/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.3160 - accuracy: 0.9295 - val_loss: 0.2496 - val_accuracy: 0.9528
+    180/180 [==============================] - 3s 17ms/step - loss: 0.3366 - accuracy: 0.9301 - val_loss: 0.2607 - val_accuracy: 0.9512
     Epoch 4/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.2321 - accuracy: 0.9456 - val_loss: 0.1926 - val_accuracy: 0.9602
+    180/180 [==============================] - 3s 16ms/step - loss: 0.2394 - accuracy: 0.9441 - val_loss: 0.1970 - val_accuracy: 0.9600
     Epoch 5/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.1908 - accuracy: 0.9533 - val_loss: 0.1615 - val_accuracy: 0.9652
+    180/180 [==============================] - 3s 15ms/step - loss: 0.1938 - accuracy: 0.9534 - val_loss: 0.1630 - val_accuracy: 0.9631
     Epoch 6/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.1640 - accuracy: 0.9582 - val_loss: 0.1412 - val_accuracy: 0.9681
+    180/180 [==============================] - 3s 16ms/step - loss: 0.1626 - accuracy: 0.9591 - val_loss: 0.1414 - val_accuracy: 0.9670
     Epoch 7/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.1451 - accuracy: 0.9642 - val_loss: 0.1265 - val_accuracy: 0.9697
+    180/180 [==============================] - 3s 15ms/step - loss: 0.1430 - accuracy: 0.9638 - val_loss: 0.1257 - val_accuracy: 0.9685
     Epoch 8/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.1318 - accuracy: 0.9668 - val_loss: 0.1161 - val_accuracy: 0.9715
+    180/180 [==============================] - 3s 16ms/step - loss: 0.1295 - accuracy: 0.9666 - val_loss: 0.1149 - val_accuracy: 0.9715
     Epoch 9/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.1190 - accuracy: 0.9706 - val_loss: 0.1081 - val_accuracy: 0.9728
+    180/180 [==============================] - 3s 16ms/step - loss: 0.1178 - accuracy: 0.9689 - val_loss: 0.1057 - val_accuracy: 0.9721
     Epoch 10/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.1099 - accuracy: 0.9708 - val_loss: 0.1021 - val_accuracy: 0.9755
+    180/180 [==============================] - 3s 16ms/step - loss: 0.1107 - accuracy: 0.9691 - val_loss: 0.1005 - val_accuracy: 0.9742
     Epoch 11/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.1035 - accuracy: 0.9723 - val_loss: 0.0984 - val_accuracy: 0.9771
+    180/180 [==============================] - 3s 16ms/step - loss: 0.1006 - accuracy: 0.9727 - val_loss: 0.0976 - val_accuracy: 0.9751
     Epoch 12/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0965 - accuracy: 0.9739 - val_loss: 0.0930 - val_accuracy: 0.9773
+    180/180 [==============================] - 3s 16ms/step - loss: 0.0955 - accuracy: 0.9739 - val_loss: 0.0920 - val_accuracy: 0.9766
     Epoch 13/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0903 - accuracy: 0.9753 - val_loss: 0.0933 - val_accuracy: 0.9764
+    180/180 [==============================] - 3s 16ms/step - loss: 0.0896 - accuracy: 0.9741 - val_loss: 0.0907 - val_accuracy: 0.9757
     Epoch 14/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0843 - accuracy: 0.9764 - val_loss: 0.0881 - val_accuracy: 0.9789
+    180/180 [==============================] - 3s 16ms/step - loss: 0.0863 - accuracy: 0.9760 - val_loss: 0.0847 - val_accuracy: 0.9782
     Epoch 15/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0797 - accuracy: 0.9779 - val_loss: 0.0862 - val_accuracy: 0.9786
+    180/180 [==============================] - 3s 16ms/step - loss: 0.0794 - accuracy: 0.9778 - val_loss: 0.0872 - val_accuracy: 0.9762
     Epoch 16/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0776 - accuracy: 0.9791 - val_loss: 0.0838 - val_accuracy: 0.9795
+    180/180 [==============================] - 3s 17ms/step - loss: 0.0747 - accuracy: 0.9788 - val_loss: 0.0816 - val_accuracy: 0.9786
     Epoch 17/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0726 - accuracy: 0.9806 - val_loss: 0.0821 - val_accuracy: 0.9798
+    180/180 [==============================] - 3s 18ms/step - loss: 0.0718 - accuracy: 0.9803 - val_loss: 0.0821 - val_accuracy: 0.9777
     Epoch 18/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0691 - accuracy: 0.9811 - val_loss: 0.0812 - val_accuracy: 0.9795
+    180/180 [==============================] - 3s 17ms/step - loss: 0.0688 - accuracy: 0.9809 - val_loss: 0.0797 - val_accuracy: 0.9804
     Epoch 19/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0671 - accuracy: 0.9813 - val_loss: 0.0807 - val_accuracy: 0.9793
+    180/180 [==============================] - 3s 17ms/step - loss: 0.0654 - accuracy: 0.9820 - val_loss: 0.0814 - val_accuracy: 0.9789
     Epoch 20/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0620 - accuracy: 0.9826 - val_loss: 0.0798 - val_accuracy: 0.9795
+    180/180 [==============================] - 3s 18ms/step - loss: 0.0637 - accuracy: 0.9818 - val_loss: 0.0771 - val_accuracy: 0.9798
     Epoch 21/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0615 - accuracy: 0.9818 - val_loss: 0.0816 - val_accuracy: 0.9793
+    180/180 [==============================] - 3s 18ms/step - loss: 0.0601 - accuracy: 0.9828 - val_loss: 0.0755 - val_accuracy: 0.9800
     Epoch 22/30
-    180/180 [==============================] - 3s 17ms/step - loss: 0.0597 - accuracy: 0.9826 - val_loss: 0.0786 - val_accuracy: 0.9802
+    180/180 [==============================] - 3s 17ms/step - loss: 0.0562 - accuracy: 0.9833 - val_loss: 0.0773 - val_accuracy: 0.9804
     Epoch 23/30
-    180/180 [==============================] - 3s 17ms/step - loss: 0.0549 - accuracy: 0.9848 - val_loss: 0.0793 - val_accuracy: 0.9802
+    180/180 [==============================] - 3s 17ms/step - loss: 0.0556 - accuracy: 0.9847 - val_loss: 0.0790 - val_accuracy: 0.9802
     Epoch 24/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0541 - accuracy: 0.9844 - val_loss: 0.0808 - val_accuracy: 0.9800
+    180/180 [==============================] - 3s 17ms/step - loss: 0.0535 - accuracy: 0.9838 - val_loss: 0.0780 - val_accuracy: 0.9807
     Epoch 25/30
-    180/180 [==============================] - 3s 17ms/step - loss: 0.0510 - accuracy: 0.9851 - val_loss: 0.0785 - val_accuracy: 0.9802
+    180/180 [==============================] - 3s 17ms/step - loss: 0.0534 - accuracy: 0.9834 - val_loss: 0.0759 - val_accuracy: 0.9813
     Epoch 26/30
-    180/180 [==============================] - 3s 17ms/step - loss: 0.0501 - accuracy: 0.9857 - val_loss: 0.0815 - val_accuracy: 0.9804
+    180/180 [==============================] - 3s 18ms/step - loss: 0.0491 - accuracy: 0.9846 - val_loss: 0.0757 - val_accuracy: 0.9818
     Epoch 27/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0482 - accuracy: 0.9851 - val_loss: 0.0799 - val_accuracy: 0.9809
+    180/180 [==============================] - 3s 17ms/step - loss: 0.0473 - accuracy: 0.9855 - val_loss: 0.0745 - val_accuracy: 0.9820
     Epoch 28/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0431 - accuracy: 0.9862 - val_loss: 0.0787 - val_accuracy: 0.9807
+    180/180 [==============================] - 3s 17ms/step - loss: 0.0457 - accuracy: 0.9857 - val_loss: 0.0789 - val_accuracy: 0.9827
     Epoch 29/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0463 - accuracy: 0.9849 - val_loss: 0.0781 - val_accuracy: 0.9811
+    180/180 [==============================] - 3s 17ms/step - loss: 0.0451 - accuracy: 0.9862 - val_loss: 0.0741 - val_accuracy: 0.9811
     Epoch 30/30
-    180/180 [==============================] - 3s 16ms/step - loss: 0.0429 - accuracy: 0.9873 - val_loss: 0.0823 - val_accuracy: 0.9818
+    180/180 [==============================] - 3s 17ms/step - loss: 0.0434 - accuracy: 0.9859 - val_loss: 0.0761 - val_accuracy: 0.9811
 
 
 
@@ -649,12 +650,12 @@ plt.legend()
 
 
 
-    <matplotlib.legend.Legend at 0x7f63001e54d0>
+    <matplotlib.legend.Legend at 0x7f372cfefb90>
 
 
 
 
-![output_43_1.png](/images/output_43_1.png)      
+![output_43_1.png](/images/output_43_1.png)    
     
 
 
@@ -773,6 +774,7 @@ keras.utils.plot_model(model3)
 
 
 
+    
 ![output_53_0.png](/images/output_53_0.png)    
     
 
@@ -796,65 +798,65 @@ history = model3.fit(train,
 ```
 
     Epoch 1/30
-    180/180 [==============================] - 5s 23ms/step - loss: 0.6202 - accuracy: 0.6962 - val_loss: 0.3579 - val_accuracy: 0.9371
+    180/180 [==============================] - 5s 22ms/step - loss: 0.6376 - accuracy: 0.6484 - val_loss: 0.4031 - val_accuracy: 0.9144
     Epoch 2/30
-    180/180 [==============================] - 4s 22ms/step - loss: 0.2271 - accuracy: 0.9373 - val_loss: 0.1470 - val_accuracy: 0.9640
+    180/180 [==============================] - 4s 20ms/step - loss: 0.2422 - accuracy: 0.9338 - val_loss: 0.1554 - val_accuracy: 0.9620
     Epoch 3/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.1395 - accuracy: 0.9608 - val_loss: 0.1100 - val_accuracy: 0.9715
+    180/180 [==============================] - 4s 21ms/step - loss: 0.1465 - accuracy: 0.9570 - val_loss: 0.1151 - val_accuracy: 0.9685
     Epoch 4/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.1089 - accuracy: 0.9688 - val_loss: 0.0914 - val_accuracy: 0.9755
+    180/180 [==============================] - 4s 21ms/step - loss: 0.1174 - accuracy: 0.9657 - val_loss: 0.0971 - val_accuracy: 0.9717
     Epoch 5/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0873 - accuracy: 0.9764 - val_loss: 0.0761 - val_accuracy: 0.9802
+    180/180 [==============================] - 4s 21ms/step - loss: 0.0964 - accuracy: 0.9719 - val_loss: 0.0859 - val_accuracy: 0.9759
     Epoch 6/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0666 - accuracy: 0.9814 - val_loss: 0.0565 - val_accuracy: 0.9843
+    180/180 [==============================] - 4s 21ms/step - loss: 0.0852 - accuracy: 0.9751 - val_loss: 0.0791 - val_accuracy: 0.9777
     Epoch 7/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0434 - accuracy: 0.9883 - val_loss: 0.0423 - val_accuracy: 0.9874
+    180/180 [==============================] - 4s 21ms/step - loss: 0.0763 - accuracy: 0.9772 - val_loss: 0.0718 - val_accuracy: 0.9793
     Epoch 8/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0336 - accuracy: 0.9901 - val_loss: 0.0313 - val_accuracy: 0.9915
+    180/180 [==============================] - 4s 21ms/step - loss: 0.0611 - accuracy: 0.9828 - val_loss: 0.0673 - val_accuracy: 0.9804
     Epoch 9/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0275 - accuracy: 0.9923 - val_loss: 0.0274 - val_accuracy: 0.9939
+    180/180 [==============================] - 4s 21ms/step - loss: 0.0507 - accuracy: 0.9870 - val_loss: 0.0548 - val_accuracy: 0.9854
     Epoch 10/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0225 - accuracy: 0.9936 - val_loss: 0.0253 - val_accuracy: 0.9942
+    180/180 [==============================] - 4s 20ms/step - loss: 0.0385 - accuracy: 0.9903 - val_loss: 0.0465 - val_accuracy: 0.9879
     Epoch 11/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0197 - accuracy: 0.9944 - val_loss: 0.0231 - val_accuracy: 0.9948
+    180/180 [==============================] - 4s 21ms/step - loss: 0.0295 - accuracy: 0.9926 - val_loss: 0.0395 - val_accuracy: 0.9881
     Epoch 12/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0190 - accuracy: 0.9940 - val_loss: 0.0219 - val_accuracy: 0.9946
+    180/180 [==============================] - 4s 20ms/step - loss: 0.0262 - accuracy: 0.9926 - val_loss: 0.0332 - val_accuracy: 0.9899
     Epoch 13/30
-    180/180 [==============================] - 4s 22ms/step - loss: 0.0154 - accuracy: 0.9957 - val_loss: 0.0216 - val_accuracy: 0.9946
+    180/180 [==============================] - 4s 21ms/step - loss: 0.0205 - accuracy: 0.9940 - val_loss: 0.0286 - val_accuracy: 0.9915
     Epoch 14/30
-    180/180 [==============================] - 4s 22ms/step - loss: 0.0146 - accuracy: 0.9954 - val_loss: 0.0206 - val_accuracy: 0.9951
+    180/180 [==============================] - 4s 20ms/step - loss: 0.0181 - accuracy: 0.9946 - val_loss: 0.0292 - val_accuracy: 0.9915
     Epoch 15/30
-    180/180 [==============================] - 4s 22ms/step - loss: 0.0128 - accuracy: 0.9961 - val_loss: 0.0194 - val_accuracy: 0.9953
+    180/180 [==============================] - 4s 20ms/step - loss: 0.0158 - accuracy: 0.9954 - val_loss: 0.0263 - val_accuracy: 0.9924
     Epoch 16/30
-    180/180 [==============================] - 4s 22ms/step - loss: 0.0126 - accuracy: 0.9965 - val_loss: 0.0194 - val_accuracy: 0.9953
+    180/180 [==============================] - 4s 20ms/step - loss: 0.0137 - accuracy: 0.9959 - val_loss: 0.0261 - val_accuracy: 0.9928
     Epoch 17/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0109 - accuracy: 0.9967 - val_loss: 0.0188 - val_accuracy: 0.9951
+    180/180 [==============================] - 4s 20ms/step - loss: 0.0123 - accuracy: 0.9959 - val_loss: 0.0247 - val_accuracy: 0.9933
     Epoch 18/30
-    180/180 [==============================] - 4s 22ms/step - loss: 0.0127 - accuracy: 0.9958 - val_loss: 0.0179 - val_accuracy: 0.9951
+    180/180 [==============================] - 4s 20ms/step - loss: 0.0129 - accuracy: 0.9963 - val_loss: 0.0247 - val_accuracy: 0.9926
     Epoch 19/30
-    180/180 [==============================] - 4s 22ms/step - loss: 0.0086 - accuracy: 0.9974 - val_loss: 0.0206 - val_accuracy: 0.9935
+    180/180 [==============================] - 4s 20ms/step - loss: 0.0130 - accuracy: 0.9958 - val_loss: 0.0230 - val_accuracy: 0.9933
     Epoch 20/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0074 - accuracy: 0.9974 - val_loss: 0.0183 - val_accuracy: 0.9953
+    180/180 [==============================] - 4s 20ms/step - loss: 0.0117 - accuracy: 0.9964 - val_loss: 0.0225 - val_accuracy: 0.9933
     Epoch 21/30
-    180/180 [==============================] - 4s 22ms/step - loss: 0.0093 - accuracy: 0.9968 - val_loss: 0.0233 - val_accuracy: 0.9915
+    180/180 [==============================] - 4s 20ms/step - loss: 0.0110 - accuracy: 0.9962 - val_loss: 0.0237 - val_accuracy: 0.9930
     Epoch 22/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0089 - accuracy: 0.9968 - val_loss: 0.0182 - val_accuracy: 0.9951
+    180/180 [==============================] - 4s 20ms/step - loss: 0.0086 - accuracy: 0.9973 - val_loss: 0.0234 - val_accuracy: 0.9939
     Epoch 23/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0087 - accuracy: 0.9972 - val_loss: 0.0194 - val_accuracy: 0.9948
+    180/180 [==============================] - 4s 20ms/step - loss: 0.0097 - accuracy: 0.9964 - val_loss: 0.0276 - val_accuracy: 0.9912
     Epoch 24/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0086 - accuracy: 0.9972 - val_loss: 0.0188 - val_accuracy: 0.9953
+    180/180 [==============================] - 4s 21ms/step - loss: 0.0084 - accuracy: 0.9969 - val_loss: 0.0253 - val_accuracy: 0.9935
     Epoch 25/30
-    180/180 [==============================] - 4s 22ms/step - loss: 0.0084 - accuracy: 0.9971 - val_loss: 0.0197 - val_accuracy: 0.9951
+    180/180 [==============================] - 4s 21ms/step - loss: 0.0073 - accuracy: 0.9978 - val_loss: 0.0262 - val_accuracy: 0.9926
     Epoch 26/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0070 - accuracy: 0.9977 - val_loss: 0.0187 - val_accuracy: 0.9951
+    180/180 [==============================] - 4s 22ms/step - loss: 0.0085 - accuracy: 0.9974 - val_loss: 0.0281 - val_accuracy: 0.9924
     Epoch 27/30
-    180/180 [==============================] - 4s 21ms/step - loss: 0.0086 - accuracy: 0.9968 - val_loss: 0.0231 - val_accuracy: 0.9948
+    180/180 [==============================] - 4s 22ms/step - loss: 0.0099 - accuracy: 0.9964 - val_loss: 0.0209 - val_accuracy: 0.9937
     Epoch 28/30
-    180/180 [==============================] - 4s 22ms/step - loss: 0.0077 - accuracy: 0.9977 - val_loss: 0.0191 - val_accuracy: 0.9953
+    180/180 [==============================] - 4s 22ms/step - loss: 0.0081 - accuracy: 0.9971 - val_loss: 0.0250 - val_accuracy: 0.9937
     Epoch 29/30
-    180/180 [==============================] - 4s 22ms/step - loss: 0.0071 - accuracy: 0.9979 - val_loss: 0.0178 - val_accuracy: 0.9955
+    180/180 [==============================] - 4s 21ms/step - loss: 0.0075 - accuracy: 0.9974 - val_loss: 0.0264 - val_accuracy: 0.9935
     Epoch 30/30
-    180/180 [==============================] - 4s 22ms/step - loss: 0.0057 - accuracy: 0.9981 - val_loss: 0.0184 - val_accuracy: 0.9951
+    180/180 [==============================] - 4s 20ms/step - loss: 0.0078 - accuracy: 0.9978 - val_loss: 0.0223 - val_accuracy: 0.9939
 
 
 
@@ -869,11 +871,12 @@ plt.legend()
 
 
 
-    <matplotlib.legend.Legend at 0x7f628c3c4890>
+    <matplotlib.legend.Legend at 0x7f372f822d50>
 
 
 
 
+    
 ![output_56_1.png](/images/output_56_1.png)      
     
 
@@ -979,13 +982,13 @@ test_df2 = make_dataset(test_df)     # convert this data using the make_dataset 
 model3.evaluate(test_df2)    # evaluate model3 on the data
 ```
 
-    225/225 [==============================] - 3s 12ms/step - loss: 0.0312 - accuracy: 0.9930
+    225/225 [==============================] - 3s 12ms/step - loss: 0.0363 - accuracy: 0.9916
 
 
 
 
 
-    [0.031193897128105164, 0.9930063486099243]
+    [0.03625625744462013, 0.9915809035301208]
 
 
 
@@ -1022,6 +1025,7 @@ embedding_df = pd.DataFrame({
 
 ```python
 import plotly.express as px 
+from plotly.io import write_html
 fig = px.scatter(embedding_df, 
                  x = "x0", 
                  y = "x1", 
@@ -1029,10 +1033,10 @@ fig = px.scatter(embedding_df,
                  size_max = 2,
                  hover_name = "word")
 
-fig.show()
+
+write_html(fig, "Embed.html")
 # Ready to plot!
 ```
-
 
 This embedding seems to have learned some reasonable associations.
 
